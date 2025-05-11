@@ -1,98 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Ikshwaku Vanani – Web Developer Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background: #f9f9f9; 
-            color: #333; 
-        }
-        header { 
-            background: #0073e6; 
-            color: white; 
-            padding: 20px; 
-            text-align: center; 
-        }
-        main { 
-            padding: 20px; 
-            max-width: 800px; 
-            margin: auto; 
-        }
-        h2 { 
-            border-bottom: 2px solid #0073e6; 
-            padding-bottom: 5px; 
-        }
-        .project {
-            margin-bottom: 30px;
-        }
-        a {
-            color: #0073e6;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikshwaku Vanani – Web Developer Portfolio</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0073e6;
+      --secondary-color: #f0f4f8;
+      --text-color: #333;
+      --card-bg: #fff;
+      --border-radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), #00bfff);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .hero p {
+      margin-top: 0.5rem;
+      font-size: 1.25rem;
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h2.section-title {
+      position: relative;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+    }
+    h2.section-title::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background: var(--primary-color);
+      bottom: 0;
+      left: 0;
+      border-radius: 2px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      color: var(--primary-color);
+    }
+    .project-card a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+    .project-card p {
+      margin: 0;
+    }
+    .contact {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .contact p, .contact a {
+      margin: 0.5rem 0;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+    .contact a {
+      font-weight: 500;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.875rem;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
 </head>
 <body>
-
-<header>
+  <header class="hero">
     <h1>Ikshwaku Vanani</h1>
-    <p>PHP, JavaScript, and Web Application Developer</p>
-</header>
-
-<main>
+    <p>PHP, JavaScript, & Web Application Developer</p>
+  </header>
+  <main>
     <section>
-    <h2>Projects</h2>
-
-    <div class="project">
-        <h3><a href="https://github.com/IkshwakuVanani/CellClash" target="_blank">Cell Clash</a></h3>
-        <p>Built a real-time multiplayer browser game inspired by Agar.io using Node.js, WebSockets, HTML5 Canvas, and MongoDB. Supports 50+ players, dynamic growth mechanics, live leaderboard, and anti-cheat validation.</p>
-    </div>
-
-    <div class="project">
-        <h3><a href="https://github.com/IkshwakuVanani/Slithering.io" target="_blank">Slithering.io</a></h3>
-        <p>Developed a multiplayer snake-style game using JavaScript, Canvas API, and WebSockets. Includes custom skins, spectate mode, and responsive zoom features. Designed to run over local or public networks.</p>
-    </div>
-
-    <div class="project">
-        <h3><a href="https://github.com/IkshwakuVanani/inventory-management-system" target="_blank">Inventory Tracker</a></h3>
-        <p>Created a lightweight inventory tracker for small businesses using pure PHP, MySQL, and vanilla JavaScript. Features include item CRUD operations, dynamic search/filter, and PDF invoice generation.</p>
-    </div>
-    
-    <div class="project">
-        <h3><a href="https://github.com/IkshwakuVanani/student-course-portal" target="_blank">Student Portal</a></h3>
-        <p>Developed a full-stack web application where students can register for classes, track progress, and communicate with advisors. Built using PHP (Laravel), MySQL, and Bootstrap for the front-end. Implemented user authentication and RESTful APIs for course management.</p>
-    </div>
-
-    <div class="project">
-        <h3><a href="https://github.com/IkshwakuVanani/task-organizer-app" target="_blank">Task Organizer App</a></h3>
-        <p>Built a responsive to-do list and task organizer application using React.js for the front-end and Node.js/Express for the backend. Tasks are stored in a MySQL database and users can set deadlines and notifications.</p>
-    </div>
-
-</section>
-
-<section>
-    <h2>Contact</h2>
-    <p>Email: ikshwakuvanani@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/ikshwakuvanani" target="_blank">ikshwakuvanani</a></p>
-</section>
-</main>
-
-<footer>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3><a href="https://github.com/IkshwakuVanani/CellClash" target="_blank">Cell Clash</a></h3>
+          <p>Built a real-time multiplayer browser game inspired by Agar.io using Node.js, WebSockets, HTML5 Canvas, and MongoDB. Supports 50+ players, dynamic growth mechanics, live leaderboard, and anti-cheat validation.</p>
+        </div>
+        <div class="project-card">
+          <h3><a href="https://github.com/IkshwakuVanani/Slithering.io" target="_blank">Slithering.io</a></h3>
+          <p>Developed a multiplayer snake-style game using JavaScript, Canvas API, and WebSockets. Includes custom skins, spectate mode, and responsive zoom features. Designed to run over local or public networks.</p>
+        </div>
+        <div class="project-card">
+          <h3><a href="https://github.com/IkshwakuVanani/inventory-management-system" target="_blank">Inventory Tracker</a></h3>
+          <p>Created a lightweight inventory tracker for small businesses using pure PHP, MySQL, and vanilla JavaScript. Features include item CRUD operations, dynamic search/filter, and PDF invoice generation.</p>
+        </div>
+        <div class="project-card">
+          <h3><a href="https://github.com/IkshwakuVanani/student-course-portal" target="_blank">Student Portal</a></h3>
+          <p>Developed a full-stack web application where students can register for classes, track progress, and communicate with advisors. Built using PHP (Laravel), MySQL, and Bootstrap for the front-end. Implemented user authentication and RESTful APIs for course management.</p>
+        </div>
+        <div class="project-card">
+          <h3><a href="https://github.com/IkshwakuVanani/task-organizer-app" target="_blank">Task Organizer App</a></h3>
+          <p>Built a responsive to-do list and task organizer application using React.js for the front-end and Node.js/Express for the backend. Tasks are stored in a MySQL database and users can set deadlines and notifications.</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact">
+        <p>Email: <a href="mailto:ikshwakuvanani@gmail.com">ikshwakuvanani@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/ikshwakuvanani" target="_blank">ikshwakuvanani</a></p>
+      </div>
+    </section>
+  </main>
+  <footer>
     © 2025 Ikshwaku Vanani. All rights reserved.
-</footer>
-
+  </footer>
 </body>
 </html>
