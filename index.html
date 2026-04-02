@@ -482,6 +482,7 @@
       transform-style: preserve-3d;
       transition: transform 0.18s ease, border-color 0.2s ease;
       will-change: transform;
+      cursor: pointer;
       border-radius: var(--radius-md);
       border: 1px solid rgba(255, 255, 255, 0.15);
       overflow: hidden;
@@ -494,6 +495,12 @@
 
     .project-card:hover {
       border-color: rgba(129, 205, 255, 0.66);
+    }
+
+    .project-card:focus-visible {
+      outline: 2px solid rgba(167, 220, 255, 0.95);
+      outline-offset: 2px;
+      border-color: rgba(167, 220, 255, 0.95);
     }
 
     .project-image {
@@ -1084,28 +1091,56 @@
       });
     }
 
+    function getProjectDetailUrl(repoName) {
+      return `project.html?repo=${encodeURIComponent(repoName)}`;
+    }
+
     function createProjectCard(repo) {
       const description = buildProjectDescription(repo);
       const tags = buildProjectTags(repo);
       const updated = formatDate(repo.updated_at);
+      const detailUrl = getProjectDetailUrl(repo.name);
       const card = document.createElement("article");
       card.className = "project-card reveal";
+      card.setAttribute("role", "link");
+      card.tabIndex = 0;
+      card.setAttribute("aria-label", `Open project details for ${repo.name}`);
 
       card.innerHTML = `
         <img class="project-image" src="${generateRepoArtwork(repo.name)}" alt="AI-generated concept image for ${repo.name}" loading="lazy" />
         <div class="project-meta">
           <div class="project-top">
             <h3 class="project-title">${repo.name}</h3>
-            <span class="repo-badge">AI Visual</span>
+            <span class="repo-badge">Open Details</span>
           </div>
           <p class="project-description">${description}</p>
           <div class="tag-list">${tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
           <div class="project-footer">
             <span>Updated ${updated}</span>
-            <a class="project-link" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">View Repo -></a>
+            <a class="project-link" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">Source Code -></a>
           </div>
         </div>
       `;
+
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a")) return;
+        window.location.href = detailUrl;
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.target.closest("a")) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          window.location.href = detailUrl;
+        }
+      });
+
+      const repoLink = card.querySelector(".project-link");
+      if (repoLink) {
+        repoLink.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+      }
 
       attachTilt(card);
       return card;
